@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: learning_path
+  name: learning-path
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: jupyter-data
-  namespace: learning_path
+  namespace: learning-path
 spec:
   capacity:
     storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "E:\vboxK8s\curso-ml" # Este path deberá ser cambiado según tu configuración de Docker Desktop
+    path: 'E:\vboxK8s\curso-ml' # Este path deberá ser cambiado según tu configuración de Docker Desktop
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jupyter-pvc
-  namespace: learning_path
+  namespace: learning-path
 spec:
   accessModes:
     - ReadWriteOnce
@@ -32,7 +32,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jupyter-deployment
-  namespace: learning_path
+  namespace: learning-path
 spec:
   replicas: 1
   selector:
@@ -53,14 +53,14 @@ spec:
           ports:
             - containerPort: 8888
           volumeMounts:
-            - mountPath: "/home/jovyan/work"
+            - mountPath: "/home/notebook"
               name: jupyter-storage
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: jupyter-service
-  namespace: learning_path
+  namespace: learning-path
 spec:
   type: NodePort
   ports:
