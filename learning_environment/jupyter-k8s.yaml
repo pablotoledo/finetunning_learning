@@ -14,7 +14,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: 'E:\vboxK8s\curso-ml' # Este path deberá ser cambiado según tu configuración de Docker Desktop
+    path: 'E:\vboxK8s\curso-ml' 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
